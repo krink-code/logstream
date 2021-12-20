@@ -1,0 +1,7 @@
+
+# pip3 install pyflakes
+
+python3 -m pyflakes ../src/logstream/__init__.py
+python3 -m pyflakes ../src/logstream/__main__.py
+python3 -m pyflakes ../src/logstream/logstream.py
+
