@@ -11,7 +11,7 @@ setup(
     entry_points = {
         "console_scripts": ['logstream = logstream.logstream:main']
         },
-    version = '0.0.0',
+    version = '1.0.0',
     description = "operating system syslog data and/or tail log files.",
     long_description = "Python command line tool to logstream operating syslog data and/or log files.",
     author = "Karl Rink",

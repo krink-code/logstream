@@ -5,7 +5,7 @@
 
 from __future__ import absolute_import
 
-__version__ = '0.0.0'
+__version__ = '1.0.0'
 
 import sys
 from subprocess import Popen, PIPE, STDOUT
@@ -20,12 +20,15 @@ usage = "Usage: " + sys.argv[0] + """
     --version
     --format [type]
 
-    type darwin:
+    os darwin:
         [default|compact|json|ndjson|syslog]
 
-    type linux:
+    os linux:
         [short|short-full|short-unix|verbose|export]
         [json|json-pretty|json-sse|json-seq]
+
+    os windows:
+        TODO
 
     --tail file
 
