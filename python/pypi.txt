@@ -1,0 +1,4 @@
+
+python3.8 -m build
+python3.8 -m twine upload --repository logstream dist/*
+
