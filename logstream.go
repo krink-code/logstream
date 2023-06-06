@@ -12,7 +12,7 @@ func logstream() error {
     switch runtime.GOOS {
     case "windows":
         fmt.Println("TODO: Windows")
-        os.Exit(1)
+        return nil
     case "darwin":
         cmd := exec.Command("log", "stream", "--style", "ndjson")
         cmd.Stdout = os.Stdout
