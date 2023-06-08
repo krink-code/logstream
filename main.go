@@ -24,12 +24,14 @@ func main() {
 			} else {
 				fmt.Println("Pattern missing. Usage: program grep <pattern>")
 			}
+		case "--output":
+			runOutPut()
 		case "--help":
 			printUsage()
 		case "--version":
 			fmt.Println("Version ", version)
 		default:
-			fmt.Println("Invalid command. Usage: program grep <pattern>")
+			fmt.Println("Invalid argument ", os.Args[1])
 		}
 	} else {
 		err := logstream.Stream()
@@ -40,8 +42,25 @@ func main() {
 
 }
 
+func runOutPut() {
+
+	output, err := logstream.OutPut()
+	if err != nil {
+		panic(err)
+	}
+
+	// Process the captured output
+	for line := range output {
+		fmt.Println("Received output:", line)
+
+		// Add any desired logic or break condition here
+	}
+
+	fmt.Println("Finished capturing and printing output.")
+}
+
 func printUsage() {
-	usage := `Usage: program [command] [options]
+	usage := `Usage: logstream [command|options]
 
 Commands:
   grep    Filter log output based on a pattern
@@ -49,6 +68,7 @@ Commands:
 Options:
   --help  Display this help message
   --version  Display version
+  --output Iterator function
   `
 
 	fmt.Println(usage)

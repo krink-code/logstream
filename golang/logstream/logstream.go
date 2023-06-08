@@ -32,14 +32,58 @@ func Stream() error {
 }
 
 
+func OutPut() (<-chan string, error) {
+
+	// Command to execute
+	var cmd *exec.Cmd
+
+        switch runtime.GOOS {
+        case "windows":
+		return nil, fmt.Errorf("TODO: windows unsupported operating system: %s", runtime.GOOS)
+        case "darwin":
+                cmd = exec.Command("log", "stream", "--style", "ndjson")
+        case "linux":
+                cmd = exec.Command("journalctl", "-f", "-o", "json")
+        default:
+                return nil, fmt.Errorf("unsupported operating system: %s", runtime.GOOS)
+        }
+
+	// Create a pipe to capture the output
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		return nil, err
+	}
+
+	// Start the command
+	err = cmd.Start()
+	if err != nil {
+		return nil, err
+	}
+
+	// Create a channel to receive the captured output
+	outputCh := make(chan string)
+
+	// Start a goroutine to capture the output
+	go func() {
+		scanner := bufio.NewScanner(stdout)
+		for scanner.Scan() {
+			line := scanner.Text()
+			outputCh <- line
+		}
+		close(outputCh)
+	}()
+
+	return outputCh, nil
+}
+
+
 func Grep(word string) error {
 
         var cmd *exec.Cmd
 
         switch runtime.GOOS {
         case "windows":
-                fmt.Println("TODO: Windows")
-                return nil
+		return fmt.Errorf("TODO: windows unsupported operating system: %s", runtime.GOOS)
         case "darwin":
                 cmd = exec.Command("log", "stream", "--style", "ndjson")
         case "linux":
