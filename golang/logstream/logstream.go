@@ -1,4 +1,4 @@
-package main
+package logstream
 
 import (
     "fmt"
@@ -7,7 +7,7 @@ import (
     "runtime"
 )
 
-func logstream() error {
+func Stream() error {
 
     switch runtime.GOOS {
     case "windows":
@@ -27,14 +27,3 @@ func logstream() error {
 
     return nil
 }
-
-func main() {
-
-    err := logstream()
-
-    if err != nil {
-        panic(err)
-    }
-
-}
-
