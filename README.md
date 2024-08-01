@@ -2,7 +2,11 @@
 
 logstream is basically "tail -f" of operating system syslog data.  
 
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)  
+
+
 ## Golang
+[![Go Reference](https://pkg.go.dev/badge/gitlab.com/krink/logstream/golang/logstream.svg)](https://pkg.go.dev/gitlab.com/krink/logstream/golang/logstream)  
 ```bash
 go build
 ./logstream
